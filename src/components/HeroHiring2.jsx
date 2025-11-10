@@ -8,21 +8,21 @@ import assets from "../assets/assets";
 const sliderData = [
   {
     heading: ["Empowering", "Human Brilliance"],
-    image: assets.hero2,
+    image: assets.banner,
     badge: "Top Talent",
     subtitle: "Aligning people, culture, and capability for lasting success.",
   },
   {
     heading: ["Strategic HR Solutions"],
-    image: assets.hero3,
+    image: assets.banner3,
     badge: "Fast Placement",
     subtitle: "Where human potential meets strategic excellence.",
   },
   {
-    heading: ["Unlock Your Team's Potential"],
-    image: assets.hiring1,
+    heading: ["Build Teams That Define Tomorrow"],
+    image: assets.banner2,
     badge: "Trusted Candidates",
-    subtitle: "Tailored HR services for sustainable growth.",
+    subtitle: "Tailored hiring solutions that align talent , culture, and purpose for growth that lasts.",
   },
 ];
 
@@ -97,7 +97,7 @@ export default function HeroHiring2() {
             exit="exit"
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `linear-gradient(rgba(0,64,72,0.35), rgba(0,64,72,0.35)), url('${sliderData[currentSlide].image}')`,
+              backgroundImage: `url('${sliderData[currentSlide].image}')`,
             }}
           />
         </AnimatePresence>

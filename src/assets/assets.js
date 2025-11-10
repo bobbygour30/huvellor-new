@@ -30,7 +30,9 @@ import resume from "./resume.jpeg";
 import hire from "./hire.jpeg";
 import new1 from "./new.png";
 import resume1 from "./resume1.png";
-
+import banner from "./banner.jpeg";
+import banner2 from "./banner2.jpeg";
+import banner3 from "./banner3.jpeg";
 
 
 const assets = {
@@ -65,7 +67,10 @@ const assets = {
     resume,
     hire,
     new1,
-    resume1
+    resume1,
+    banner,
+    banner2,
+    banner3
 
 };
 
