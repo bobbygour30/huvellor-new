@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Outfit:wght@100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Prata&family=Raleway:ital,wght@0,100..900;1,100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Underdog&display=swap');
+@import "tailwindcss";
+
+
+body {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+}
+
+/* Custom Scrollbar for Huvellor Website */
+
+/* Webkit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 12px;              /* Width of vertical scrollbar */
+  height: 12px;             /* Height of horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 48, 52, 0.1); /* Light dark-teal track */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #F0C5B5, #00444B); /* Gradient thumb */
+  border-radius: 10px;
+  border: 3px solid rgba(0, 48, 52, 0.1); /* Space between thumb and track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #F0C5B5, #00575D);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;             /* "auto" or "thin" */
+  scrollbar-color: #F0C5B5 #002b2f; /* thumb color, track color */
+}
+
+
+.perspective {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* COSMIC INK PORTAL - PURE CSS */
+.ink-portal-container * {
+  box-sizing: border-box;
+}
+
+/* Optional: Smooth transitions */
+button {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* Ensure blur works */
+@supports (filter: blur(1px)) {
+  .ink-blur {
+    filter: blur(1px);
+  }
+}

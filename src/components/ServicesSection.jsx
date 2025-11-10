@@ -1,0 +1,119 @@
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  FaUserTie,
+  FaUserFriends,
+  FaProjectDiagram,
+  FaStar,
+  FaBalanceScale,
+  FaChalkboardTeacher,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+const ICONS = [
+  FaUserTie,
+  FaUserFriends,
+  FaProjectDiagram,
+  FaStar,
+  FaBalanceScale,
+  FaChalkboardTeacher,
+];
+
+const SERVICES = [
+  {
+    title: "Executive & Leadership Hiring",
+    tagline: "We specialize in identifying and attracting top-tier leaders who can drive strategy, growth, and innovation. Confidential searches and leadership assessments included.",
+    content:
+      "At Huvellor, leadership hiring goes beyond designations — it’s about discovering individuals who carry both vision and values. We specialize in connecting organizations with leaders who can drive strategy, nurture culture, and elevate teams with empathy and innovation. Our focus is not just on experience, but on leadership energy, authenticity, and long-term alignment with your business goals.",
+  },
+  {
+    title: "End-to-End Talent Acquisition",
+    tagline: "From sourcing to onboarding, we manage the entire recruitment cycle for all roles—technical, non-technical, mid-level, and senior.",
+    content:
+      "From workforce planning to seamless onboarding, we manage the entire recruitment lifecycle with precision and purpose. Our approach blends human insight with data intelligence — ensuring every hire strengthens performance, culture, and retention. We build hiring frameworks that evolve with your organization, helping you scale smarter and hire faster without compromising quality.",
+  },
+  {
+    title: "Employer Branding & Talent Advisory",
+    tagline: "We shape how talent sees your brand. From job ad optimization to candidate experience, we help you attract the right kind of attention.",
+    content:
+      "Your employer brand is the story your people tell about you. At Huvellor, we craft that story with authenticity — strengthening how your organization is perceived by both employees and candidates. We guide you in building a talent identity that attracts, engages, and retains the best, helping you stand out as a trusted and aspirational employer.",
+  },
+];
+
+const ServicesSection = ({ assets, isServicesInView }, ref) => {
+  return (
+    <section ref={ref} className="py-24 px-6 md:px-16 bg-[#f8f8f8]">
+      {/* Section Header */}
+      <div className="text-center mb-16">
+        <h2 className="text-3xl md:text-6xl font-bold text-[#003034]">
+          Our Services
+        </h2>
+        <p className="text-[#333333] mt-3 max-w-2xl mx-auto text-lg">
+          Discover tailored HR solutions that align with your company’s goals.
+        </p>
+      </div>
+
+      {/* Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-col-3 gap-12 max-w-7xl mx-auto">
+        {SERVICES.map((card, i) => {
+          const Icon = ICONS[i] || FaUserTie;
+          const img =
+            assets[`service${i + 1}`] || assets[`serviceImage${i + 1}`] || "";
+
+          return (
+            <motion.article
+              key={card.title}
+              className="relative bg-white rounded-2xl shadow-md overflow-hidden flex flex-col 
+                         hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
+              transition={{
+                delay: 0.1 + i * 0.08,
+                duration: 0.6,
+                ease: "easeOut",
+              }}
+            >
+              {/* Image */}
+              <div
+                className="h-56 w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                style={{ backgroundImage: `url(${img})` }}
+              ></div>
+
+              {/* Card Base Content */}
+              <div className="flex-1 flex flex-col justify-between relative p-6 text-center z-10">
+                <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-[#003034] text-white w-20 h-20 rounded-full grid place-items-center shadow-lg border-4 border-white">
+                  <Icon className="text-white opacity-95" size={28} />
+                </div>
+
+                <h3 className="text-xl font-semibold text-[#003034] mt-10">
+                  {card.title}
+                </h3>
+                <p className="mt-2 text-sm text-[#333333]">{card.tagline}</p>
+
+                
+              </div>
+
+              {/* Full Card Hover Overlay */}
+              <motion.div
+                className="absolute inset-0 bg-[#003034]/95 text-white p-2 flex flex-col justify-center items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-y-auto rounded-2xl z-20"
+              >
+                <p className="text-sm md:text-base">{card.content}</p>
+              </motion.div>
+            </motion.article>
+          );
+        })}
+      </div>
+
+      {/* Discover More Button */}
+      <div className="ml-auto flex items-center justify-center mt-10">
+        <Link to="/services">
+          <button className="bg-[#f7dace] text-[#004048] px-6 py-3 rounded-md font-semibold shadow-md hover:opacity-95">
+            DISCOVER MORE
+          </button>
+        </Link>
+      </div>
+    </section>
+  );
+};
+
+export default React.forwardRef(ServicesSection);
