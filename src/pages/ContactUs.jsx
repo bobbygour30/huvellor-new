@@ -13,7 +13,7 @@ const fadeInUp = (delay = 0) => ({
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: "easeOut", delay },
+    transition: { duration: 0.6, ease: "easeOut", delay },
   },
 });
 
@@ -79,17 +79,17 @@ const ContactUs = () => {
 
   const contactCards = [
     {
-      icon: <FaMapMarkerAlt className="text-2xl xs:text-3xl text-[#F0C5B5]" />,
+      icon: <FaMapMarkerAlt className="text-xl xs:text-2xl" />,
       title: "Office",
       desc: "9th floor, Unitech cyber park, Tower D, Sector 39, Gurgaon (Hr), PIN code -122001",
     },
     {
-      icon: <FaPhoneAlt className="text-2xl xs:text-3xl text-[#F0C5B5]" />,
+      icon: <FaPhoneAlt className="text-xl xs:text-2xl" />,
       title: "Phone",
       desc: "+91 9876543210",
     },
     {
-      icon: <FaEnvelope className="text-2xl xs:text-3xl text-[#F0C5B5]" />,
+      icon: <FaEnvelope className="text-xl xs:text-2xl" />,
       title: "Email",
       desc: "contact@huvellor.com",
     },
@@ -99,19 +99,11 @@ const ContactUs = () => {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative min-h-[60vh] xs:min-h-[70vh] bg-white text-[#104B51] overflow-x-hidden py-12 xs:py-16 px-4 xs:px-6 md:px-16"
+      className="relative min-h-[60vh] xs:min-h-[70vh] bg-gray-50 text-[#104B51] overflow-x-hidden py-12 xs:py-16 px-4 xs:px-6 md:px-16"
     >
-      {/* Floating Background Circles */}
-      <motion.div
-        className="absolute -top-20 -left-10 w-40 xs:w-64 h-40 xs:h-64 bg-[#104B51]/10 rounded-full blur-3xl"
-        animate={{ y: [0, 15, 0], x: [0, 10, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-0 right-0 w-48 xs:w-80 h-48 xs:h-80 bg-[#104B51]/20 rounded-full blur-3xl"
-        animate={{ y: [0, -15, 0], x: [0, -10, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-      />
+      {/* Subtle Background Accents */}
+      <div className="absolute -top-20 -left-10 w-48 xs:w-64 h-48 xs:h-64 bg-[#104B51]/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-56 xs:w-80 h-56 xs:h-80 bg-[#104B51]/5 rounded-full blur-3xl" />
 
       <div className="relative z-10">
         {/* Heading */}
@@ -121,16 +113,16 @@ const ContactUs = () => {
           animate={isInView ? "visible" : "hidden"}
           className="text-center max-w-3xl mx-auto mb-12 xs:mb-16"
         >
-          <h1 className="text-3xl xs:text-4xl md:text-5xl font-extrabold mb-4 text-[#104B51]">
+          <h1 className="text-3xl xs:text-4xl md:text-5xl font-bold mb-4 text-[#104B51]">
             Let’s Build Your Dream Team
           </h1>
-          <p className="text-gray-700 text-base xs:text-lg md:text-xl leading-relaxed">
+          <p className="text-gray-600 text-base xs:text-lg md:text-xl leading-relaxed">
             Have a recruitment need? Need strategic HR support? Our team is
             ready to assist you with precision and passion.
           </p>
         </motion.div>
 
-        {/* ==================== CONTACT CARDS – TEAL BG + ROSE GOLD TEXT + ANIMATED ==================== */}
+        {/* ==================== CONTACT CARDS – GRAY GRADIENT ==================== */}
         <motion.div
           variants={fadeInUp(0.2)}
           initial="hidden"
@@ -142,78 +134,24 @@ const ContactUs = () => {
               key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.15, ease: "easeOut" }}
-              whileHover={{
-                y: -8,
-                scale: 1.04,
-                transition: { type: "spring", stiffness: 300, damping: 20 },
-              }}
-              className="relative group flex flex-col h-full"
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 xs:p-7 shadow-sm border border-gray-200 hover:shadow-lg hover:border-[#104B51]/10 transition-all duration-300 flex flex-col items-center text-center"
             >
-              {/* Pulsating Teal Glow */}
-              <motion.div
-                className="absolute inset-0 rounded-2xl opacity-40 blur-xl bg-[#14b8a6]"
-                animate={{
-                  scale: [1, 1.15, 1],
-                  opacity: [0.3, 0.5, 0.3],
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-
-              {/* Flowing Rose Gold Border */}
-              <motion.div
-                className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-600 pointer-events-none"
-                style={{
-                  background:
-                    "conic-gradient(from 0deg, #F0C5B5, #14b8a6, #F0C5B5, #14b8a6, #F0C5B5)",
-                  backgroundSize: "200% 200%",
-                }}
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%"],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
-
-              {/* Card Content - DARK GRADIENT + VISIBLE TEXT */}
-              <div className="relative flex flex-col flex-1 bg-gradient-to-r from-[#b9b9ba] via-[#036c60] to-[#b9b9ba] rounded-2xl p-6 xs:p-8 text-center shadow-lg border border-[#14b8a6]/50 transition-all duration-500 group-hover:shadow-2xl group-hover:border-[#F0C5B5]/40">
-                {/* Icon Circle with Gradient */}
-                <div className="w-14 xs:w-16 h-14 xs:h-16 mx-auto rounded-full bg-gradient-to-br from-white/20 to-[#F0C5B5]/10 grid place-items-center mb-4 xs:mb-5 backdrop-blur-sm">
-                  <motion.div
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                  >
-                    <div className="relative">
-                      {React.cloneElement(item.icon, {
-                        className:
-                          "text-2xl xs:text-3xl text-[#F0C5B5] drop-shadow-md",
-                      })}
-                      <div className="absolute inset-0 blur-sm opacity-70">
-                        {React.cloneElement(item.icon, {
-                          className: "text-2xl xs:text-3xl text-white",
-                        })}
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* Title - Rose Gold */}
-                <h3 className="text-base xs:text-lg font-bold text-[#F0C5B5] mb-2 drop-shadow-sm">
-                  {item.title}
-                </h3>
-
-                {/* Description - FULLY VISIBLE WHITE */}
-                <p className="text-sm xs:text-base text-white leading-relaxed flex-1 font-medium">
-                  {item.desc}
-                </p>
+              {/* Icon with Rose Gold Accent */}
+              <div className="w-12 h-12 xs:w-14 xs:h-14 rounded-full bg-[#F0C5B5]/10 flex items-center justify-center mb-4 text-[#F0C5B5] shadow-sm">
+                {item.icon}
               </div>
+
+              {/* Title */}
+              <h3 className="text-lg xs:text-xl font-semibold text-[#104B51] mb-1">
+                {item.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-sm xs:text-base text-gray-700 leading-relaxed">
+                {item.desc}
+              </p>
             </motion.div>
           ))}
         </motion.div>
@@ -226,7 +164,7 @@ const ContactUs = () => {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             onSubmit={handleSubmit}
-            className="flex-1 bg-[#104B51]/5 rounded-2xl shadow-lg p-6 xs:p-8"
+            className="flex-1 bg-white rounded-2xl shadow-sm p-6 xs:p-8 border border-gray-200"
           >
             <h2 className="text-2xl xs:text-3xl font-bold mb-6 xs:mb-8 text-center text-[#104B51]">
               Send Us a Message
@@ -239,7 +177,7 @@ const ContactUs = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="border border-[#104B51]/20 bg-white text-[#104B51] rounded-lg px-3 xs:px-4 py-2 xs:py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] placeholder-gray-400 text-sm xs:text-base"
+                className="border border-gray-300 bg-white text-[#104B51] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] placeholder-gray-400 text-sm xs:text-base transition"
               />
               <input
                 type="email"
@@ -248,7 +186,7 @@ const ContactUs = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="border border-[#104B51]/20 bg-white text-[#104B51] rounded-lg px-3 xs:px-4 py-2 xs:py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] placeholder-gray-400 text-sm xs:text-base"
+                className="border border-gray-300 bg-white text-[#104B51] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] placeholder-gray-400 text-sm xs:text-base transition"
               />
               <input
                 type="tel"
@@ -256,7 +194,7 @@ const ContactUs = () => {
                 placeholder="Mobile Number"
                 value={formData.phone}
                 onChange={handleChange}
-                className="border border-[#104B51]/20 bg-white text-[#104B51] rounded-lg px-3 xs:px-4 py-2 xs:py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] placeholder-gray-400 text-sm xs:text-base"
+                className="border border-gray-300 bg-white text-[#104B51] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] placeholder-gray-400 text-sm xs:text-base transition"
               />
               <input
                 type="text"
@@ -264,7 +202,7 @@ const ContactUs = () => {
                 placeholder="Designation"
                 value={formData.designation}
                 onChange={handleChange}
-                className="border border-[#104B51]/20 bg-white text-[#104B51] rounded-lg px-3 xs:px-4 py-2 xs:py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] placeholder-gray-400 text-sm xs:text-base"
+                className="border border-gray-300 bg-white text-[#104B51] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] placeholder-gray-400 text-sm xs:text-base transition"
               />
               <input
                 type="text"
@@ -272,14 +210,14 @@ const ContactUs = () => {
                 placeholder="Company Name"
                 value={formData.company}
                 onChange={handleChange}
-                className="border border-[#104B51]/20 bg-white text-[#104B51] rounded-lg px-3 xs:px-4 py-2 xs:py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] placeholder-gray-400 text-sm xs:text-base"
+                className="border border-gray-300 bg-white text-[#104B51] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] placeholder-gray-400 text-sm xs:text-base transition"
               />
               <select
                 name="services"
                 value={formData.services}
                 onChange={handleChange}
                 required
-                className="border border-[#104B51]/20 bg-white text-[#104B51] rounded-lg px-3 xs:px-4 py-2 xs:py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] text-sm xs:text-base"
+                className="border border-gray-300 bg-white text-[#104B51] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] text-sm xs:text-base transition"
               >
                 <option value="" disabled>
                   Select a Service
@@ -298,28 +236,28 @@ const ContactUs = () => {
                 placeholder="Message"
                 value={formData.message}
                 onChange={handleChange}
-                className="md:col-span-2 border border-[#104B51]/20 bg-white text-[#104B51] rounded-lg px-3 xs:px-4 py-2 xs:py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] placeholder-gray-400 text-sm xs:text-base"
+                className="md:col-span-2 border border-gray-300 bg-white text-[#104B51] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#104B51] placeholder-gray-400 text-sm xs:text-base transition"
               ></textarea>
               <div className="md:col-span-2">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full bg-[#104B51] text-white font-semibold rounded-full px-6 xs:px-8 py-3 xs:py-4 shadow-lg hover:shadow-xl transition-all duration-500 ${
-                    isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                  className={`w-full bg-[#104B51] text-white font-medium rounded-full px-6 py-3 shadow-md hover:shadow-lg transition-all duration-300 ${
+                    isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                   }`}
                 >
                   {isSubmitting ? "Sending..." : "Submit"}
                 </motion.button>
+
                 {showSuccess && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="mt-4 flex justify-center items-center gap-2 text-[#104B51] font-medium"
+                    className="mt-4 flex justify-center items-center gap-2 text-green-600 font-medium"
                   >
-                    <FaCheckCircle className="text-lg xs:text-xl text-green-600" />
+                    <FaCheckCircle />
                     <span>Message sent successfully!</span>
                   </motion.div>
                 )}
@@ -327,10 +265,9 @@ const ContactUs = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="mt-4 flex justify-center items-center gap-2 text-red-600 font-medium"
+                    className="mt-4 text-center text-red-600 font-medium"
                   >
-                    <span>{error}</span>
+                    {error}
                   </motion.div>
                 )}
               </div>
@@ -342,7 +279,7 @@ const ContactUs = () => {
             variants={fadeInUp(0.6)}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="flex-1 rounded-2xl overflow-hidden shadow-2xl border border-[#104B51]/20"
+            className="flex-1 rounded-2xl overflow-hidden shadow-md border border-gray-200"
           >
             <iframe
               title="Huvellor Location"

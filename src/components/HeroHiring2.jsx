@@ -8,7 +8,7 @@ import assets from "../assets/assets";
 const sliderData = [
   {
     heading: ["Empowering", "Human Brilliance"],
-    image: assets.banner,
+    image: assets.banner4,
     badge: "Top Talent",
     subtitle: "Aligning people, culture, and capability for lasting success.",
   },

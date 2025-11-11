@@ -33,7 +33,7 @@ import resume1 from "./resume1.png";
 import banner from "./banner.jpeg";
 import banner2 from "./banner2.jpeg";
 import banner3 from "./banner3.jpeg";
-
+import banner4 from "./banner4.jpeg";
 
 const assets = {
     logo,
@@ -70,7 +70,8 @@ const assets = {
     resume1,
     banner,
     banner2,
-    banner3
+    banner3,
+    banner4
 
 };
 

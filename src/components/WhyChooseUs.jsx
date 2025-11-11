@@ -132,7 +132,7 @@ export default function WhyChooseUs({ whyRef }) {
                 >
                   <FaCheckCircle />
                 </motion.div>
-                <div className="text-sm font-semibold text-[#0f1720]">
+                <div className="text-lg font-semibold text-[#0f1720]">
                   {f.title}
                 </div>
               </motion.div>
@@ -148,7 +148,7 @@ export default function WhyChooseUs({ whyRef }) {
               boxShadow: "0px 8px 20px rgba(0,64,72,0.2)",
             }}
             transition={{ duration: 0.25 }}
-            className="inline-flex items-center gap-3 mt-8 px-6 py-3 rounded-full bg-[#fee7df] text-[#004048] font-semibold shadow-lg"
+            className="inline-flex items-center gap-3 mt-8 px-6 py-3 rounded-full bg-[#fbccbc] text-[#004048] font-semibold shadow-lg"
           >
             Book a Consultation
           </motion.a>
