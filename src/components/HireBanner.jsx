@@ -1,221 +1,152 @@
 "use client";
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import assets from "../assets/assets";
 
-const textVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.7,
-      ease: "easeOut",
-    },
-  }),
-};
+/**
+ * Updated HireBanner component — matches the poster layout:
+ * - Big cursive "Ready to hire?" at top-left
+ * - Large bold stacked headline
+ * - Right-side illustration (uses the same illustration that was in the component / assets)
+ * - Hanging sign in front of the chair (poster style)
+ * - Responsive and closely aligned to the provided image composition
+ *
+ * Notes:
+ * - Make sure assets.hire (background) and assets.hiring2 (foreground illustration) exist in your assets file.
+ * - TailwindCSS required. Framer Motion used for subtle animation.
+ */
 
-const floatingAnimation = {
-  y: [0, -12, 0],
-  transition: {
-    duration: 4,
-    repeat: Infinity,
-    ease: "easeInOut",
-  },
-};
-
-export default function HireBanner() {
+export default function HireBannerPoster() {
 
 
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden font-sans">
-      {/* Animated Background */}
-      <motion.div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,55,63,0.88), rgba(0,55,63,0.92)), url('${assets.hire}')`,
-        }}
+    <section className="relative min-h-[84vh] md:min-h-[76vh] flex items-center justify-center overflow-hidden font-sans">
+      {/* Google cursive font */}
+      <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+        rel="stylesheet"
       />
 
+     
 
-      {/* Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center">
+      {/* left teal block (poster look) */}
+      <div
+        className="absolute inset-y-0 left-0 -z-10 w-full md:w-3/5 lg:w-3/5"
+        style={{
+          clipPath: "polygon(0 0, 66% 0, 56% 100%, 0% 100%)",
+          backgroundColor: "#1290a0", // changeable primary teal for your brand
+        }}
+        aria-hidden
+      />
 
-          {/* ---------- LEFT: Floating Image Frame ---------- */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="relative order-2 lg:order-1 flex justify-center"
-          >
-            <motion.div
-              animate={floatingAnimation}
-              className="relative w-full max-w-sm md:max-w-md lg:max-w-lg"
-            >
-              {/* Main Image */}
-              <motion.img
-                src="https://react.mediacity.co.in/hiredots/static/media/cta-2-1.8718beaea6babb89f996.png"
-                alt="Hiring illustration"
-                className="w-full h-auto object-contain rounded-lg drop-shadow-2xl"
-                style={{
-                  maskImage: "linear-gradient(to bottom, black 80%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, black 80%, transparent 100%)",
-                }}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.4 }}
-              />
+      {/* Decorative subtle shapes (optional) */}
+      <div className="absolute right-12 top-8 hidden lg:block -z-10">
+        <motion.div
+          animate={{ rotate: [0, 360] }}
+          transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+          className="w-44 h-44 rounded-full opacity-20"
+          style={{
+            background:
+              "radial-gradient(circle at 30% 30%, rgba(0,0,0,0.05), rgba(255,255,255,0.02))",
+          }}
+        />
+      </div>
 
-              {/* Glowing Border Frame */}
-              <motion.div
-                className="absolute inset-0 border-4 sm:border-6 lg:border-8 rounded-lg pointer-events-none"
-                style={{ borderColor: "#E8B4A0" }}
-                animate={{
-                  boxShadow: [
-                    "0 0 20px rgba(232, 180, 160, 0.3)",
-                    "0 0 35px rgba(232, 180, 160, 0.5)",
-                    "0 0 20px rgba(232, 180, 160, 0.3)",
-                  ],
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              />
-
-              {/* Animated Tag */}
-              <motion.div
-                initial={{ opacity: 0, y: 30, scale: 0.8 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 0.8, duration: 0.6, type: "spring", stiffness: 120 }}
-                viewport={{ once: true }}
-                className="absolute -bottom-4 left-4 sm:left-6 bg-gradient-to-r from-[#E8B4A0] to-[#f4c9b3] text-[#00373F] px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg"
-                whileHover={{ scale: 1.1 }}
-              >
-                Top Talent Available
-              </motion.div>
-            </motion.div>
-          </motion.div>
-
-          {/* ---------- RIGHT: Text + CTA ---------- */}
-          <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.1, ease: "easeOut" }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-white space-y-6 sm:space-y-8 order-1 lg:order-2"
-          >
-            {/* Script Header */}
+      {/* Main container */}
+      <div className="relative z-10 max-w-7xl w-full mx-auto px-6 md:px-10 lg:px-16 py-12 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+          {/* LEFT TEXT (matches poster stacking) */}
+          <div className="text-left text-white flex flex-col gap-6 order-2 lg:order-1">
+            {/* cursive small heading */}
             <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-xl sm:text-2xl md:text-3xl"
-              style={{
-                fontFamily: "'Great Vibes', cursive",
-                color: "#F9E2D9",
-              }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              style={{ fontFamily: "'Great Vibes', cursive" }}
+              className="text-3xl md:text-4xl lg:text-5xl leading-tight text-[#062E31]/90"
             >
               Ready to hire?
             </motion.h3>
 
-            {/* Main Headline - Word-by-Word Animation */}
-            <motion.h2
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+            {/* large stacked headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.12, duration: 0.8 }}
+              className="font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight"
             >
-              {["Hire", "Your", "Next", "Candidate", "on"].map((word, i) => (
-  <React.Fragment key={i}>
-    <motion.span
-      custom={i}
-      variants={textVariants}
-      className={i === 4 ? "relative inline-block" : ""}
-    >
-      {i === 4 ? (
-        <span style={{ color: "#E8B4A0" }} className="relative inline-block">
-          Huvellor
-          <motion.span
-            className="absolute -bottom-1 left-0 w-full h-1"
-            initial={{ width: 0 }}
-            whileInView={{ width: "100%" }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            style={{
-              background: "linear-gradient(90deg, #E8B4A0, transparent)",
-            }}
-          />
-        </span>
-      ) : (
-        word + " "
-      )}
-    </motion.span>
+              <span className="block text-[#F1B99F]">Hire Your Next</span>
+              <span className="block text-[#F1B99F]">Candidate on</span>
+              <span className="block text-[#F1B99F]">Huvellor</span>
+            </motion.h1>
 
-    {/* Add <br /> after “Next” for responsive layout */}
-    {i === 2 && <br className="hidden xs:block" />}
-  </React.Fragment>
-))}
-
-            </motion.h2>
-
-            {/* Tagline */}
+            {/* small paragraph */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1, duration: 0.7 }}
-              viewport={{ once: true }}
-              className="text-base sm:text-lg md:text-xl text-white/85 max-w-lg leading-relaxed"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.8 }}
+              className="max-w-xl text-black text-base md:text-lg"
             >
-              Crafting teams that define tomorrow.
+              We connect you with verified talent, fast placement support, and
+              hiring tools built to scale your team — quickly and confidently.
             </motion.p>
 
-            {/* Pulsing CTA */}
+            {/* CTA */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.3, duration: 0.7 }}
-              viewport={{ once: true }}
-              className="pt-2 sm:pt-4"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 0.8 }}
+              className="mt-2"
             >
               <Link
                 to="/apply"
-                className="group inline-flex items-center gap-3 text-white font-semibold text-base sm:text-lg border-b-4 pb-1 transition-all duration-300 hover:gap-5 hover:text-[#E8B4A0] relative"
-                style={{ borderColor: "#E8B4A0" }}
+                className="inline-flex items-center gap-3 bg-[#F1B99F] text-[#063636] font-semibold px-5 py-3 rounded-full shadow-md hover:translate-y-[-2px] transition-transform"
               >
                 Start your hiring journey
-                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-3 duration-300" />
-                {/* Pulse Glow */}
-                <motion.span
-                  className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100"
-                  animate={{
-                    boxShadow: [
-                      "0 0 0 0 rgba(232, 180, 160, 0)",
-                      "0 0 0 10px rgba(232, 180, 160, 0.2)",
-                      "0 0 0 20px rgba(232, 180, 160, 0)",
-                    ],
-                  }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
+                <ArrowRight className="w-5 h-5" />
               </Link>
             </motion.div>
-          </motion.div>
+          </div>
+
+          {/* RIGHT ILLUSTRATION (poster) */}
+          <div className="relative order-1 lg:order-2 flex items-end justify-center md:justify-end">
+            {/* wrapper controls size and poster composition */}
+            <div className="relative w-full max-w-[520px] md:max-w-[600px] lg:max-w-[680px]">
+              {/* person + chair illustration */}
+              <motion.img
+                src="https://react.mediacity.co.in/hiredots/static/media/cta-2-1.8718beaea6babb89f996.png
+"
+                alt="Hiring illustration"
+                className="w-full h-auto object-contain rounded-2xl shadow-2xl"
+                initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.9, ease: "easeOut" }}
+                style={{ willChange: "transform" }}
+              />
+
+              {/* hanging sign (poster style) — positioned relative to the chair */}
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.7 }}
+                className="absolute left-4 bottom-6 md:left-6 md:bottom-10 bg-white text-[#00373F] px-5 py-4 rounded-md shadow-2xl border border-white/60 text-sm sm:text-base font-bold leading-tight"
+              >
+                <div className="leading-tight text-left">
+                  <span className="block">We Help</span>
+                  <span className="block">You Fill</span>
+                  <span className="block">This Seat with</span>
+                  <span className="block">Brilliance.</span>
+                </div>
+              </motion.div>
+
+              {/* thin horizontal baseline to mimic poster ground line */}
+              <div className="hidden md:block absolute left-6 right-6 bottom-2 h-[2px] bg-black/10" />
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Bottom Gradient Line */}
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 h-px"
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        transition={{ delay: 1.5, duration: 1.2 }}
-        viewport={{ once: true }}
-        style={{
-          background: "linear-gradient(to right, transparent, #E8B4A0, transparent)",
-          transformOrigin: "center",
-        }}
-      />
     </section>
   );
 }
