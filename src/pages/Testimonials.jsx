@@ -1,17 +1,18 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import assets from "../assets/assets";
 
 const testimonials = [
   {
-    name: "CEO, SaaS Startup",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    name: "Gaurav Chhabra,Sane Green informatics Oct ltd",
+    image: assets.gaurav,
     quote:
       "HUVELLOR helped us close critical leadership roles in record time. Their process is sharp, and their team truly understands business.",
   },
   {
-    name: "HR Manager, Mid-size Tech Company",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Manik Sehgal,  Founder RASSA KARTS , Shark Tank",
+    image: assets.manik,
     quote:
       "We completely restructured our HR policies with HUVELLOR's help. It was smooth, professional, and fully compliant.",
   },
