@@ -34,7 +34,8 @@ import banner from "./banner.jpeg";
 import banner2 from "./banner2.jpeg";
 import banner3 from "./banner3.jpeg";
 import banner4 from "./banner4.jpeg";
-
+import gaurav from "./gaurav.jpeg";
+import manik from "./manik.jpeg";
 const assets = {
     logo,
     hero,
@@ -71,8 +72,9 @@ const assets = {
     banner,
     banner2,
     banner3,
-    banner4
-
+    banner4,
+    gaurav,
+    manik
 };
 
 export default assets;
