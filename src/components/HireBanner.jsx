@@ -22,7 +22,7 @@ export default function HireBannerPoster() {
 
 
   return (
-    <section className="relative min-h-[84vh] md:min-h-[76vh] flex items-center justify-center overflow-hidden font-sans">
+    <section className="relative bg-[#1290a0] min-h-[84vh] md:min-h-[76vh] flex items-center justify-center overflow-hidden font-sans">
       {/* Google cursive font */}
       <link
         href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
@@ -77,8 +77,8 @@ export default function HireBannerPoster() {
               transition={{ delay: 0.12, duration: 0.8 }}
               className="font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight"
             >
-              <span className="block text-[#F1B99F]">Hire Your Next</span>
-              <span className="block text-[#F1B99F]">Candidate on</span>
+              <span className="block text-white">Hire Your Next</span>
+              <span className="block text-white">Candidate on</span>
               <span className="block text-[#F1B99F]">Huvellor</span>
             </motion.h1>
 
@@ -119,7 +119,7 @@ export default function HireBannerPoster() {
                 src="https://react.mediacity.co.in/hiredots/static/media/cta-2-1.8718beaea6babb89f996.png
 "
                 alt="Hiring illustration"
-                className="w-full h-auto object-contain rounded-2xl shadow-2xl"
+                className="w-full h-auto object-contain rounded-2xl "
                 initial={{ opacity: 0, y: 8, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.9, ease: "easeOut" }}
